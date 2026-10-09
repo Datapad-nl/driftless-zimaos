@@ -12,7 +12,7 @@ services:
         protocol: tcp
     volumes:
       - type: bind
-        source: /DATA/AppData/$AppID/data
+        source: /DATA/AppData/driftless/data
         target: /data
     x-casaos:
       ports:

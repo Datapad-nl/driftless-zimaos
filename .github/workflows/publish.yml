@@ -1,0 +1,42 @@
+# Build the v2 store with IceWhale's builder and publish it to GitHub Pages.
+#
+# ZimaOS (1.7+) adds a store from its store.json URL and rejects a zip source;
+# CasaOS still reads the branch zip of this repo. Both come from the same
+# Apps/ sources.
+name: publish
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: IceWhaleTech/build-appstore-action@v1
+        with:
+          source: .
+          output: dist
+          base-url: https://datapad-nl.github.io/driftless-zimaos
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+      - id: deploy
+        uses: actions/deploy-pages@v4
