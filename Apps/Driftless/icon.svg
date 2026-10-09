@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="512" height="512" role="img" aria-label="Driftless">
+  <rect width="48" height="48" rx="13" fill="#0FA39A"/>
+  <g fill="#fff" transform="translate(9.84 10.43) scale(0.59)">
+    <path fill-rule="evenodd" d="M8 28A16 16 0 0 1 40 28Z M19 28A5 5 0 0 1 29 28Z"/>
+    <rect x="7" y="29.5" width="34" height="4.5" rx="2.25"/>
+  </g>
+</svg>

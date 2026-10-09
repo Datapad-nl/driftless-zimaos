@@ -1,0 +1,60 @@
+name: driftless
+services:
+  driftless:
+    image: ghcr.io/datapad-nl/driftless:1.0.0
+    container_name: driftless
+    restart: unless-stopped
+    ports:
+      # Host port 8642 (rarely taken on ZimaOS, unlike 8080); the server listens
+      # on 8080 inside the container.
+      - target: 8080
+        published: "8642"
+        protocol: tcp
+    volumes:
+      - type: bind
+        source: /DATA/AppData/$AppID/data
+        target: /data
+    x-casaos:
+      ports:
+        - container: "8080"
+          description:
+            en_US: Web admin and sync API. Desktop and phone apps connect here.
+      volumes:
+        - container: /data
+          description:
+            en_US: Database and synced files. Back this folder up.
+x-casaos:
+  id: nl.datapad.driftless
+  main: driftless
+  # The web admin lives at /admin/; "/" is the bare sync API.
+  index: /admin/
+  port_map: "8642"
+  scheme: http
+  architectures:
+    - amd64
+    - arm64
+  version: "1.0.0"
+  category: Productivity
+  author: Datapad B.V.
+  developer: Datapad B.V.
+  icon: https://cdn.jsdelivr.net/gh/Datapad-nl/driftless-zimaos@main/Apps/Driftless/icon.svg
+  thumbnail: ""
+  title:
+    en_US: Driftless
+  tagline:
+    en_US: Self-hosted file sync, without a subscription.
+  description:
+    en_US: >-
+      Driftless keeps folders in sync between your computers through your own
+      ZimaOS box. The server only stores files and manages accounts; the apps
+      on your devices decide what to sync. Changes reach other devices within
+      seconds, and edits made on two devices at once are kept side by side
+      instead of overwritten. Clients: macOS app, plus a command-line client
+      and tray app for macOS, Windows and Linux. Phone apps are on the way.
+  tips:
+    before_install:
+      en_US: >-
+        After installing, open Driftless and create the administrator account
+        on the first screen. Then add a user for each person and sign in from
+        the desktop app with http://<this ZimaOS address>:8642 as the server.
+  website: https://projects.datapad.nl/docs/driftless

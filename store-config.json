@@ -1,0 +1,8 @@
+{
+  "version": 2,
+  "store_id": "nl.datapad.zimaos",
+  "name": { "en_US": "Datapad" },
+  "description": { "en_US": "Driftless, the self-hosted file sync server, by Datapad." },
+  "maintainer": "Datapad B.V.",
+  "url": "https://github.com/Datapad-nl/driftless-zimaos"
+}
