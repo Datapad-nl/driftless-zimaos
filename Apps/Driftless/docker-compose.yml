@@ -1,7 +1,7 @@
 name: driftless
 services:
   driftless:
-    image: ghcr.io/datapad-nl/driftless:1.1.2
+    image: ghcr.io/datapad-nl/driftless:1.1.3
     container_name: driftless
     restart: unless-stopped
     ports:
@@ -33,7 +33,7 @@ x-casaos:
   architectures:
     - amd64
     - arm64
-  version: "1.1.2"
+  version: "1.1.3"
   category: Productivity
   author: Datapad B.V.
   developer: Datapad B.V.
